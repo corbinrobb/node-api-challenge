@@ -50,9 +50,9 @@ async function verifyActionId(req, res, next) {
 }
 
 function verifyActionBody(req, res, next) {
-  const { project_id, notes, description } = req.body;
-  if (!project_id || !description || !notes) {
-    return res.status(400).json({ error: "Please provide project_id, notes, and description" });
+  const { notes, description } = req.body;
+  if (!description || !notes) {
+    return res.status(400).json({ error: "Please provide notes and description" });
   }
 
   next();

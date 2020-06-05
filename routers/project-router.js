@@ -54,7 +54,7 @@ router.get('/:id/actions', verifyProjectId, async (req, res) => {
 
 router.post('/:id/actions', verifyProjectId, verifyActionBody, async (req, res) => {
   try {
-    const action = await actionsDb.insert(req.body);
+    const action = await actionsDb.insert({...req.body, project_id: req.project.id});
     res.status(200).json(action);
   } catch (err) {
     res.status(500).json({ error: "Couldn't post project action to database" })
